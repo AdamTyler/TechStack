@@ -7,7 +7,7 @@ class LibraryList extends Component {
   render() {
     return (
       <ListView
-        renderRow={this.renderRow}
+        renderRow={this.renderRow.bind(this)}
         dataSource={this.dataSource} />
     )
   }
@@ -21,13 +21,16 @@ class LibraryList extends Component {
   }
 
   renderRow(library) {
+    console.log(this.props)
     return <ListItem library={library} />
   }
 }
 
 const mapStateToProps = state => {
   const { libraries } = state
-  return {libraries}
+  return {
+    libraries
+  }
 }
 
 export default connect(mapStateToProps)(LibraryList)
